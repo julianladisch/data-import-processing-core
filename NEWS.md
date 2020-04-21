@@ -1,4 +1,4 @@
-## 2020-04-21 v2.1.0-SNAPSHOT
+## 2020-04-21 v2.0.1-SNAPSHOT
 * Reverted archive/unarchive eventPayload
 * [MODDICORE-42](https://issues.folio.org/browse/MODDICORE-42) Filtered out electronic access entries with missing uri values in mapped Instances
 * [MODDICORE-44](https://issues.folio.org/browse/MODDICORE-44) Null value if mapped field empty
