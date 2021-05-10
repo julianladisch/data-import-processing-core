@@ -33,7 +33,7 @@ import java.util.Set;
 @RunWith(JUnit4.class)
 public class MappingTest {
 
-  private RecordToInstanceMapper mapper = RecordToInstanceMapperBuilder.buildMapper("MARC");
+  private RecordToInstanceMapper mapper = RecordToInstanceMapperBuilder.buildMapper("MARC_BIB");
 
   private static final String INSTANCES_PATH = "src/test/resources/org/folio/processing/mapping/instances.json";
   private static final String BIBS_PATH = "src/test/resources/org/folio/processing/mapping/CornellFOLIOExemplars_Bibs.mrc";
