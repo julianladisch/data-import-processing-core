@@ -11,6 +11,7 @@ on:
 jobs:
   data-import-processing-core:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
         with:
@@ -21,7 +22,7 @@ jobs:
             ~/.m2
             !~/.m2/repository/org/folio/data-import-processing-core
           key: maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: maven-
+          restore-keys: data-import-processing-core-
       - run: mvn -B clean install -DskipTests
       - uses: actions/upload-artifact@v2
         with:
@@ -43,7 +44,7 @@ jobs:
             ~/.m2
             !~/.m2/repository/org/folio/data-import-processing-core
           key: maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: maven-
+          restore-keys: mod-inventory-
       - uses: actions/download-artifact@v2
         with:
           name: data-import-processing-core
@@ -54,6 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+    timeout-minutes: 10
     steps:
       - run: git clone --depth 1 --recurse-submodules https://github.com/folio-org/mod-source-record-manager
       - uses: actions/cache@v2
@@ -62,7 +64,7 @@ jobs:
             ~/.m2
             !~/.m2/repository/org/folio/data-import-processing-core
           key: maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: maven-
+          restore-keys: mod-source-record-manager-
       - uses: actions/download-artifact@v2
         with:
           name: data-import-processing-core
