@@ -1,0 +1,25 @@
+name: build dependants
+# mod-inventory master and mod-source-record-manager master depend on the
+# latest -SNAPSHOT of data-import-processing-core master.
+# Try to build them with the current master of data-import-processing-core.
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: maven
+    - run: mvn -B install
+    - run: git checkout --depth 1 --recurse-submodules https://github.com/folio-org/mod-inventory
+    - run: cd mod-inventory; mvn -B verify
+    - run: git checkout --depth 1 --recurse-submodules https://github.com/folio-org/mod-source-record-manager
+    - run: cd mod-source-record-manager; mvn -B verify
